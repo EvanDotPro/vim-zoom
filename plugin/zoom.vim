@@ -15,22 +15,25 @@ command! -narg=0 ZoomOut   :call s:ZoomOut()
 command! -narg=0 ZoomReset :call s:ZoomReset()
 
 " map
-nmap + :ZoomIn<CR>
-nmap - :ZoomOut<CR>
+nmap = :ZoomIn<CR>:echo &guifont<CR>
+nmap - :ZoomOut<CR>:echo &guifont<CR>
+nmap <C-ScrollWheelUp> :ZoomIn<CR>:echo &guifont<CR>
+nmap <C-ScrollWheelDown> :ZoomOut<CR>:echo &guifont<CR>
+nmap <C-MiddleMouse> :ZoomReset<CR>:echo &guifont<CR>
 
 " guifont size + 1
 function! s:ZoomIn()
-  let l:fsize = substitute(&guifont, '^.*:h\([^:]*\).*$', '\1', '')
+  let l:fsize = substitute(&guifont, '[^\d]* \(\d\+\)$', '\1', '')
   let l:fsize += 1
-  let l:guifont = substitute(&guifont, ':h\([^:]*\)', ':h' . l:fsize, '')
+  let l:guifont = substitute(&guifont, '^\(.* \)\d\+', '\1' . l:fsize, '')
   let &guifont = l:guifont
 endfunction
 
 " guifont size - 1
 function! s:ZoomOut()
-  let l:fsize = substitute(&guifont, '^.*:h\([^:]*\).*$', '\1', '')
+  let l:fsize = substitute(&guifont, '[^\d]* \(\d\+\)$', '\1', '')
   let l:fsize -= 1
-  let l:guifont = substitute(&guifont, ':h\([^:]*\)', ':h' . l:fsize, '')
+  let l:guifont = substitute(&guifont, '^\(.* \)\d\+', '\1' . l:fsize, '')
   let &guifont = l:guifont
 endfunction
 
