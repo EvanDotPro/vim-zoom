@@ -15,7 +15,7 @@ command! -narg=0 ZoomOut   :call s:ZoomOut()
 command! -narg=0 ZoomReset :call s:ZoomReset()
 
 " map
-nmap = :ZoomIn<CR>:echo &guifont<CR>
+nmap + :ZoomIn<CR>:echo &guifont<CR>
 nmap - :ZoomOut<CR>:echo &guifont<CR>
 nmap <C-ScrollWheelUp> :ZoomIn<CR>:echo &guifont<CR>
 nmap <C-ScrollWheelDown> :ZoomOut<CR>:echo &guifont<CR>
